@@ -1,57 +1,34 @@
-// وظيفة لعرض المحافظات في القائمة المنسدلة
-function populateProvinces(data) {
+// وظيفة لعرض البيانات
+function displayData(data) {
+    const tableBody = document.querySelector('#table tbody');
     const provinceSelect = document.querySelector('#provinceSelect');
-
-    // إضافة المحافظات إلى القائمة المنسدلة
+    
+    // نمر على جميع المحافظات والدوائر
     data.result.forEach(province => {
         const option = document.createElement('option');
         option.value = province.id;
         option.textContent = province.displayName;
         provinceSelect.appendChild(option);
-    });
 
-    // إضافة حدث عند تغيير المحافظة
-    provinceSelect.addEventListener('change', (event) => {
-        const selectedProvinceId = event.target.value;
-        if (selectedProvinceId) {
-            displayProvinceDetails(data, selectedProvinceId);
+        if (province.details) {
+            province.details.forEach(detail => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${province.displayName}</td>
+                    <td>${detail.displayName}</td>
+                    <td>${detail.id}</td>
+                `;
+                tableBody.appendChild(row);
+            });
         } else {
-            clearTable(); // إذا لم يتم اختيار محافظة، يتم مسح الجدول
-        }
-    });
-}
-
-// وظيفة لعرض تفاصيل الدوائر بناءً على المحافظة المختارة
-function displayProvinceDetails(data, provinceId) {
-    const tableBody = document.querySelector('#table tbody');
-    clearTable(); // مسح الجدول قبل تعبئته بالبيانات الجديدة
-
-    const selectedProvince = data.result.find(province => province.id == provinceId);
-
-    if (selectedProvince && selectedProvince.details) {
-        selectedProvince.details.forEach(detail => {
             const row = document.createElement('tr');
             row.innerHTML = `
-                <td>${selectedProvince.displayName}</td>
-                <td>${detail.displayName}</td>
-                <td>${detail.id}</td>
+                <td>${province.displayName}</td>
+                <td colspan="3">لا توجد تفاصيل</td>
             `;
             tableBody.appendChild(row);
-        });
-    } else {
-        const row = document.createElement('tr');
-        row.innerHTML = `
-            <td>${selectedProvince.displayName}</td>
-            <td colspan="2">لا توجد تفاصيل</td>
-        `;
-        tableBody.appendChild(row);
-    }
-}
-
-// وظيفة لمسح الجدول
-function clearTable() {
-    const tableBody = document.querySelector('#table tbody');
-    tableBody.innerHTML = '';
+        }
+    });
 }
 
 // استيراد البيانات من ملف JSON باستخدام fetch API
@@ -64,11 +41,39 @@ function fetchData() {
             return response.json();
         })
         .then(data => {
-            populateProvinces(data); // عرض المحافظات في القائمة المنسدلة
+            displayData(data);
+            setupSearch(data.result);
         })
         .catch(error => {
             console.error('Error fetching the data:', error);
         });
+}
+
+// إعداد وظيفة البحث
+function setupSearch(provinces) {
+    const searchBox = document.querySelector('#searchBox');
+    const tableBody = document.querySelector('#table tbody');
+
+    searchBox.addEventListener('input', () => {
+        const searchTerm = searchBox.value.toLowerCase();
+        tableBody.innerHTML = ''; // تفريغ الجدول قبل عرض النتائج
+
+        provinces.forEach(province => {
+            if (province.details) {
+                province.details.forEach(detail => {
+                    if (detail.displayName.toLowerCase().includes(searchTerm)) {
+                        const row = document.createElement('tr');
+                        row.innerHTML = `
+                            <td>${province.displayName}</td>
+                            <td>${detail.displayName}</td>
+                            <td>${detail.id}</td>
+                        `;
+                        tableBody.appendChild(row);
+                    }
+                });
+            }
+        });
+    });
 }
 
 // استدعاء الوظيفة عند تحميل الصفحة
