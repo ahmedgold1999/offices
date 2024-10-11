@@ -10,8 +10,7 @@ function displayData(data) {
                 row.innerHTML = `
                     <td>${province.displayName}</td>
                     <td>${detail.displayName}</td>
-                    <td>${detail.latitude}</td>
-                    <td>${detail.longitude}</td>
+                    <td>${detail.id}</td>
                 `;
                 tableBody.appendChild(row);
             });
