@@ -15,6 +15,7 @@ function displayData(data) {
                 const row = document.createElement('tr');
                 row.innerHTML = `
                     <td>${province.displayName}</td>
+                    <td>${province.id}</td>
                     <td>${detail.displayName}</td>
                     <td>${detail.id}</td>
                 `;
@@ -65,6 +66,7 @@ function setupSearch(provinces) {
                         const row = document.createElement('tr');
                         row.innerHTML = `
                             <td>${province.displayName}</td>
+                            <td>${province.id}</td>
                             <td>${detail.displayName}</td>
                             <td>${detail.id}</td>
                         `;
