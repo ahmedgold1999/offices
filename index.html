@@ -1,79 +1,196 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>عرض الدوائر الإدارية</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f9;
-            color: #333;
-            margin: 0;
-            padding: 0;
-        }
-        h1 {
-            text-align: center;
-            color: #444;
-        }
-        .container {
-            width: 80%;
-            margin: 20px auto;
-        }
-        .controls {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 20px;
-        }
-        select, input[type="text"] {
-            padding: 10px;
-            width: 48%;
-            font-size: 16px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-        input[type="text"] {
-            direction: rtl;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        table, th, td {
-            border: 1px solid #ccc;
-        }
-        th, td {
-            padding: 12px;
-            text-align: Right;
-        }
-        th {
-            background-color: #f2f2f2;
-        }
-    </style>
-</head>
-<body>
-    <h1>عرض الدوائر الإدارية</h1>
-    <div class="container">
-        <div class="controls">
-            <select id="provinceSelect">
-                <option value="">اختر المحافظة</option>
-            </select>
-            <input type="text" id="searchBox" placeholder="ابحث عن دائرة...">
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <title>متجر ملابس رجالية</title>
+  </head>
+  <body>
+    <nav>
+      <div class="nav__header">
+        <div class="nav__logo">
+          <a href="#">متجر ملابس رجالية</a>
         </div>
-        <table id="table">
-            <thead>
-                <tr>
-                    <th>اسم المحافظة</th>
-                    <th>كود المحافظة</th>
-                    <th>اسم الدائرة</th>
-                    <th>كود الدائرة</th>
-                </tr>
-            </thead>
-            <tbody>
-                <!-- سيتم تعبئة البيانات هنا -->
-            </tbody>
-        </table>
-    </div>
-    <script src="script.js"></script>
-</body>
+        <div class="nav__menu__btn" id="menu-btn">
+          <i class="ri-menu-line"></i>
+        </div>
+      </div>
+      <ul class="nav__links" id="nav-links">
+        <li><a href="#catalogue">المنتجات</a></li>
+        <li><a href="#fashion">الموضة</a></li>
+        <li><a href="#favourite">المفضلة</a></li>
+        <li>
+          <button class="btn">انشاء حساب</button>
+        </li>
+      </ul>
+    </nav>
+    <header>
+      <div class="section__container header__container">
+        <div class="header__content">
+          <h1>
+            <span>دعونا</span>
+            <br />
+            نستكشف
+            <br />
+            <span>نوعاً فريداً</span>
+            <br />
+            من الملابس.
+          </h1>
+          <p>الأزياء المؤثرة والمبتكرة!</p>
+          <div class="header__btns">
+            <button class="btn">تسوق الأن</button>
+          </div>
+        </div>
+        <div class="header__image">
+          <img src="assets/header.png" alt="header" />
+        </div>
+      </div>
+    </header>
+
+    <section class="banner">
+      <div class="banner__container">
+        <img src="assets/banner-1.png" alt="banner" />
+        <img src="assets/banner-2.png" alt="banner" />
+        <img src="assets/banner-3.png" alt="banner" />
+        <img src="assets/banner-4.png" alt="banner" />
+        <img src="assets/banner-5.png" alt="banner" />
+        <img src="assets/banner-6.png" alt="banner" />
+        <img src="assets/banner-7.png" alt="banner" />
+        <img src="assets/banner-8.png" alt="banner" />
+      </div>
+    </section>
+
+    <section class="section__container arrival__container" id="catalogue">
+      <h2 class="section__header">الوافدون الجُدد</h2>
+      <div class="arrival__grid">
+        <div class="arrival__card">
+          <div class="arrival__image">
+            <img src="assets/arrival-1.jpg" alt="arrival" />
+          </div>
+          <div class="arrival__content">
+            <div>
+              <h4>هوديات و بلوزات</h4>
+              <a href="#">أستكشف الأن</a>
+            </div>
+            <span><i class="ri-arrow-right-line"></i></span>
+          </div>
+        </div>
+        <div class="arrival__card">
+          <div class="arrival__image">
+            <img src="assets/arrival-2.jpg" alt="arrival" />
+          </div>
+          <div class="arrival__content">
+            <div>
+              <h4>المعاطف والسترات</h4>
+              <a href="#">أستكشف الأن</a>
+            </div>
+            <span><i class="ri-arrow-right-line"></i></span>
+          </div>
+        </div>
+        <div class="arrival__card">
+          <div class="arrival__image">
+            <img src="assets/arrival-3.jpg" alt="arrival" />
+          </div>
+          <div class="arrival__content">
+            <div>
+              <h4>التشيريتات</h4>
+              <a href="#">أستكشف الأن</a>
+            </div>
+            <span><i class="ri-arrow-right-line"></i></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="sale" id="fashion">
+      <div class="section__container sale__container">
+        <div class="sale__image">
+          <img src="assets/sale.png" alt="sale" />
+        </div>
+        <div class="sale__content">
+          <h2><span>يوم الشراء</span><br />تخفيضات نار</h2>
+          <p>
+            اشتري ما لا يقل عن 100 دولار واحصل على خصم 30% على رمز القسيمة لعملية الشراء التالية
+          </p>
+          <h4>1 July - 10 July 2025</h4>
+          <p>*تطبق الشروط والأحكام</p>
+          <div class="sale__btn">
+            <button class="btn">أشتري الأن</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section__container favourite__container" id="favourite">
+      <h2 class="section__header">الشباب المفضل</h2>
+      <div class="favourite__grid">
+        <div class="favourite__card">
+          <div class="favourite__image">
+            <img src="assets/favourite-1.jpg" alt="favourite" />
+          </div>
+          <div class="favourite__content">
+            <div>
+              <h4>رائجة على الانستغرام</h4>
+              <a href="#">أستكشف الأن</a>
+            </div>
+            <span><i class="ri-arrow-right-line"></i></span>
+          </div>
+        </div>
+        <div class="favourite__card">
+          <div class="favourite__image">
+            <img src="assets/favourite-2.jpg" alt="favourite" />
+          </div>
+          <div class="favourite__content">
+            <div>
+              <h4>الكل اقل من $40</h4>
+              <a href="#">أستكشف الأن</a>
+            </div>
+            <span><i class="ri-arrow-right-line"></i></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section__container download__container" id="lifestyle">
+      <div class="download__image">
+        <img src="assets/download.png" alt="download" />
+      </div>
+      <div class="download__content">
+        <h2 class="section__header">قم بتنزيل التطبيق واحصل على القسيمة!</h2>
+        <p>
+          احصل على خصم 30% على أول معاملة باستخدام تطبيقنا الجديد للهاتف المحمول في الوقت الحالي.
+        </p>
+        <div class="download__links">
+          <a href="#">
+            <img src="assets/apple.png" alt="apple" />
+          </a>
+          <a href="#">
+            <img src="assets/google.png" alt="google" />
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="promo">
+      <div class="section__container promo__container">
+        <h2 class="section__header">
+          انضم إلى مجتمع التسوق للحصول على عرض ترويجي شهري
+        </h2>
+        <p>اكتب بريدك الإلكتروني أدناه وكن جيلًا شابًا جامحًا</p>
+        <form action="/">
+          <input type="text" placeholder="اكتب بريدك الألكتروني" />
+          <button class="btn">أرسل الان</button>
+        </form>
+      </div>
+    </section>
+
+    
+    <script src="https://unpkg.com/scrollreveal"></script>
+    <script src="main.js"></script>
+  </body>
 </html>
