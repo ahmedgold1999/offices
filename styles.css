@@ -103,13 +103,7 @@ var(--primary-color);
 
 .nav__logo a {
   font-size: 8rem; /* حجم النص */
-  font-weight: 900; /* سماكة النص */
-  color: #FF0000 !important; /* لون أحمر واضح */
-  font-family: 'Roboto', sans-serif; /* خط حديث */
   letter-spacing: 0.1em; /* تحسين التباعد */
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3), 
-               0px 4px 8px rgba(255, 0, 0, 0.2); /* تأثير ظل أكثر ترتيبًا */
-  text-transform: uppercase; /* تحويل النص إلى أحرف كبيرة */
 }
 
 
