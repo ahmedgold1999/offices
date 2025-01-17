@@ -1,196 +1,108 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="styles.css" />
-    <title>متجر ملابس رجالية</title>
-  </head>
-  <body>
-    <nav>
-      <div class="nav__header">
-        <div class="nav__logo">
-          <a href="#">متجر ملابس رجالية</a>
-        </div>
-        <div class="nav__menu__btn" id="menu-btn">
-          <i class="ri-menu-line"></i>
-        </div>
-      </div>
-      <ul class="nav__links" id="nav-links">
-        <li><a href="#catalogue">المنتجات</a></li>
-        <li><a href="#fashion">الموضة</a></li>
-        <li><a href="#favourite">المفضلة</a></li>
-        <li>
-          <button class="btn">انشاء حساب</button>
-        </li>
-      </ul>
-    </nav>
-    <header>
-      <div class="section__container header__container">
-        <div class="header__content">
-          <h1>
-            <span>دعونا</span>
-            <br />
-            نستكشف
-            <br />
-            <span>نوعاً فريداً</span>
-            <br />
-            من الملابس.
-          </h1>
-          <p>الأزياء المؤثرة والمبتكرة!</p>
-          <div class="header__btns">
-            <button class="btn">تسوق الأن</button>
-          </div>
-        </div>
-        <div class="header__image">
-          <img src="header.png" alt="header" />
-        </div>
-      </div>
-    </header>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>دوائر البطاقة الوطنية</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            direction: rtl;
+        }
 
-    <section class="banner">
-      <div class="banner__container">
-        <img src="banner-1.png" alt="banner" />
-        <img src="banner-2.png" alt="banner" />
-        <img src="banner-3.png" alt="banner" />
-        <img src="banner-4.png" alt="banner" />
-        <img src="banner-5.png" alt="banner" />
-        <img src="banner-6.png" alt="banner" />
-        <img src="banner-7.png" alt="banner" />
-        <img src="banner-8.png" alt="banner" />
-      </div>
-    </section>
+        header {
+            background-color: #007BFF;
+            color: white;
+            padding: 20px;
+            font-size: 24px;
+        }
 
-    <section class="section__container arrival__container" id="catalogue">
-      <h2 class="section__header">الوافدون الجُدد</h2>
-      <div class="arrival__grid">
-        <div class="arrival__card">
-          <div class="arrival__image">
-            <img src="arrival-1.jpg" alt="arrival" />
-          </div>
-          <div class="arrival__content">
-            <div>
-              <h4>هوديات و بلوزات</h4>
-              <a href="#">أستكشف الأن</a>
-            </div>
-            <span><i class="ri-arrow-right-line"></i></span>
-          </div>
-        </div>
-        <div class="arrival__card">
-          <div class="arrival__image">
-            <img src="arrival-2.jpg" alt="arrival" />
-          </div>
-          <div class="arrival__content">
-            <div>
-              <h4>المعاطف والسترات</h4>
-              <a href="#">أستكشف الأن</a>
-            </div>
-            <span><i class="ri-arrow-right-line"></i></span>
-          </div>
-        </div>
-        <div class="arrival__card">
-          <div class="arrival__image">
-            <img src="arrival-3.jpg" alt="arrival" />
-          </div>
-          <div class="arrival__content">
-            <div>
-              <h4>التشيريتات</h4>
-              <a href="#">أستكشف الأن</a>
-            </div>
-            <span><i class="ri-arrow-right-line"></i></span>
-          </div>
-        </div>
-      </div>
-    </section>
+        main {
+            margin: 20px;
+        }
 
-    <section class="sale" id="fashion">
-      <div class="section__container sale__container">
-        <div class="sale__image">
-          <img src="sale.png" alt="sale" />
-        </div>
-        <div class="sale__content">
-          <h2><span>يوم الشراء</span><br />تخفيضات نار</h2>
-          <p>
-            اشتري ما لا يقل عن 100 دولار واحصل على خصم 30% على رمز القسيمة لعملية الشراء التالية
-          </p>
-          <h4>1 July - 10 July 2025</h4>
-          <p>*تطبق الشروط والأحكام</p>
-          <div class="sale__btn">
-            <button class="btn">أشتري الأن</button>
-          </div>
-        </div>
-      </div>
-    </section>
+        select, button {
+            margin: 10px;
+            padding: 10px;
+            font-size: 16px;
+        }
 
-    <section class="section__container favourite__container" id="favourite">
-      <h2 class="section__header">الشباب المفضل</h2>
-      <div class="favourite__grid">
-        <div class="favourite__card">
-          <div class="favourite__image">
-            <img src="favourite-1.jpg" alt="favourite" />
-          </div>
-          <div class="favourite__content">
-            <div>
-              <h4>رائجة على الانستغرام</h4>
-              <a href="#">أستكشف الأن</a>
-            </div>
-            <span><i class="ri-arrow-right-line"></i></span>
-          </div>
-        </div>
-        <div class="favourite__card">
-          <div class="favourite__image">
-            <img src="favourite-2.jpg" alt="favourite" />
-          </div>
-          <div class="favourite__content">
-            <div>
-              <h4>الكل اقل من $40</h4>
-              <a href="#">أستكشف الأن</a>
-            </div>
-            <span><i class="ri-arrow-right-line"></i></span>
-          </div>
-        </div>
-      </div>
-    </section>
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
 
-    <section class="section__container download__container" id="lifestyle">
-      <div class="download__image">
-        <img src="download.png" alt="download" />
-      </div>
-      <div class="download__content">
-        <h2 class="section__header">قم بتنزيل التطبيق واحصل على القسيمة!</h2>
-        <p>
-          احصل على خصم 30% على أول معاملة باستخدام تطبيقنا الجديد للهاتف المحمول في الوقت الحالي.
-        </p>
-        <div class="download__links">
-          <a href="#">
-            <img src="apple.png" alt="apple" />
-          </a>
-          <a href="#">
-            <img src="google.png" alt="google" />
-          </a>
-        </div>
-      </div>
-    </section>
+        li {
+            background: #f4f4f4;
+            margin: 5px;
+            padding: 10px;
+            border: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+    <header>دوائر البطاقة الوطنية</header>
+    <main>
+        <button onclick="fetchProvinces()">جلب المحافظات</button>
+        <br>
+        <select id="provinceSelect">
+            <option value="">اختر المحافظة</option>
+        </select>
+        <br>
+        <button onclick="fetchCenters()">عرض المراكز</button>
+        <ul id="centerList"></ul>
+    </main>
 
-    <section class="promo">
-      <div class="section__container promo__container">
-        <h2 class="section__header">
-          انضم إلى مجتمع التسوق للحصول على عرض ترويجي شهري
-        </h2>
-        <p>اكتب بريدك الإلكتروني أدناه وكن جيلًا شابًا جامحًا</p>
-        <form action="/">
-          <input type="text" placeholder="اكتب بريدك الألكتروني" />
-          <button class="btn">أرسل الان</button>
-        </form>
-      </div>
-    </section>
+    <script>
+        const provinceSelect = document.getElementById('provinceSelect');
+        const centerList = document.getElementById('centerList');
 
-    
-    <script src="https://unpkg.com/scrollreveal"></script>
-    <script src="main.js"></script>
-  </body>
+        // Fetch provinces
+        async function fetchProvinces() {
+            try {
+                const response = await fetch('https://mobile.nid-moi.gov.iq/api/v1/Account/GetAllProvince');
+                const data = await response.json();
+                const provinces = data.result;
+
+                provinceSelect.innerHTML = '<option value="">اختر المحافظة</option>'; // Reset dropdown
+
+                provinces.forEach(province => {
+                    const option = document.createElement('option');
+                    option.value = province.id;
+                    option.textContent = province.displayName;
+                    provinceSelect.appendChild(option);
+                });
+            } catch (error) {
+                console.error('Error fetching provinces:', error);
+            }
+        }
+
+        // Fetch centers based on selected province
+        async function fetchCenters() {
+            const provinceId = provinceSelect.value;
+            if (!provinceId) {
+                alert('يرجى اختيار محافظة أولاً');
+                return;
+            }
+
+            try {
+                const response = await fetch(`https://mobile.nid-moi.gov.iq/api/v1/Account/GetCenterByProvince?provinceId=${provinceId}`);
+                const data = await response.json();
+                const centers = data.result;
+
+                centerList.innerHTML = ''; // Clear existing centers
+                centers.forEach(center => {
+                    const li = document.createElement('li');
+                    li.textContent = `ID: ${center.id}, Name: ${center.displayName}`;
+                    centerList.appendChild(li);
+                });
+            } catch (error) {
+                console.error('Error fetching centers:', error);
+            }
+        }
+    </script>
+</body>
 </html>
