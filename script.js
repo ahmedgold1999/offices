@@ -18,18 +18,16 @@ let studentName = "";
 const questionText = document.getElementById("question-text");
 const answerButtons = document.getElementById("answer-buttons");
 const nextButton = document.getElementById("next-button");
-const scoreText = document.getElementById("score-text");
 const startButton = document.getElementById("start-button");
 const studentNameInput = document.getElementById("student-name");
 const questionContainer = document.getElementById("question-container");
 const studentNameDisplay = document.getElementById("student-name-display");
 const questionNumbers = document.getElementById("question-numbers");
 
-// بدء الاختبار بعد إدخال الاسم
 startButton.addEventListener("click", () => {
     studentName = studentNameInput.value.trim();
     if (studentName === "") {
-        alert("يرجى إدخال اسم الطالب قبل بدء الاختبار.");
+        alert("يرجى إدخال اسم الطالب الرباعي قبل بدء الامتحان.");
         return;
     }
     studentNameDisplay.innerText = `الطالب: ${studentName}`;
@@ -69,16 +67,8 @@ function showQuestion() {
     });
 }
 
-function resetState() {
-    nextButton.style.display = "none";
-    answerButtons.innerHTML = "";
-}
-
 function selectAnswer(index, button) {
     button.classList.add("selected");
     button.parentNode.childNodes.forEach(btn => btn.onclick = null);
-    if (index === questions[currentQuestionIndex].correct) {
-        score++;
-    }
     nextButton.style.display = "block";
 }
