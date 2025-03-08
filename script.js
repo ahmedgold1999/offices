@@ -25,11 +25,8 @@ const startButton = document.getElementById("start-button");
 const studentNameInput = document.getElementById("student-name");
 const questionContainer = document.getElementById("question-container");
 const studentNameDisplay = document.getElementById("student-name-display");
-const questionNumbers = document.getElementById("question-numbers");
-const header = document.getElementById("header");
-const studentNameContainer = document.getElementById("student-name-container");
-const examInfo = document.getElementById("exam-info");
 const timerDisplay = document.getElementById("timer");
+const examInfo = document.getElementById("exam-info");
 
 startButton.addEventListener("click", () => {
     studentName = studentNameInput.value.trim();
@@ -38,10 +35,9 @@ startButton.addEventListener("click", () => {
         return;
     }
     studentNameDisplay.innerText = `الطالب: ${studentName}`;
-    header.style.display = "none";
-    studentNameContainer.style.display = "none";
-    examInfo.style.display = "flex";
+    startButton.style.display = "none";
     questionContainer.style.display = "block";
+    examInfo.style.display = "flex";
     startQuiz();
     startTimer();
 });
@@ -82,6 +78,6 @@ function startTimer() {
             alert("انتهى الوقت!");
         }
         timeRemaining--;
-        timerDisplay.innerText = `الوقت المتبقي: ${Math.floor(timeRemaining / 60)}:${timeRemaining % 60}`;
+        timerDisplay.innerText = `الوقت المتبقي: ${Math.floor(timeRemaining / 60)}:${String(timeRemaining % 60).padStart(2, '0')}`;
     }, 1000);
 }
