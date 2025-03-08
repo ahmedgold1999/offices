@@ -14,6 +14,7 @@ for (let i = 0; i < 48; i++) {
 let currentQuestionIndex = 0;
 let score = 0;
 let studentName = "";
+let timeRemaining = 3600; // 60 دقيقة
 
 const questionText = document.getElementById("question-text");
 const answerButtons = document.getElementById("answer-buttons");
@@ -23,6 +24,10 @@ const studentNameInput = document.getElementById("student-name");
 const questionContainer = document.getElementById("question-container");
 const studentNameDisplay = document.getElementById("student-name-display");
 const questionNumbers = document.getElementById("question-numbers");
+const header = document.getElementById("header");
+const studentNameContainer = document.getElementById("student-name-container");
+const examInfo = document.getElementById("exam-info");
+const timerDisplay = document.getElementById("timer");
 
 startButton.addEventListener("click", () => {
     studentName = studentNameInput.value.trim();
@@ -31,9 +36,12 @@ startButton.addEventListener("click", () => {
         return;
     }
     studentNameDisplay.innerText = `الطالب: ${studentName}`;
-    startButton.style.display = "none";
+    header.style.display = "none";
+    studentNameContainer.style.display = "none";
+    examInfo.style.display = "flex";
     questionContainer.style.display = "block";
     startQuiz();
+    startTimer();
 });
 
 function startQuiz() {
@@ -41,14 +49,12 @@ function startQuiz() {
     score = 0;
     questionNumbers.innerHTML = "";
     nextButton.style.display = "none";
-
     questions.forEach((_, index) => {
         const numDiv = document.createElement("div");
         numDiv.innerText = index + 1;
         numDiv.classList.add("question-number");
         questionNumbers.appendChild(numDiv);
     });
-
     showQuestion();
 }
 
@@ -71,4 +77,14 @@ function selectAnswer(index, button) {
     button.classList.add("selected");
     button.parentNode.childNodes.forEach(btn => btn.onclick = null);
     nextButton.style.display = "block";
+}
+
+function startTimer() {
+    setInterval(() => {
+        if (timeRemaining <= 0) {
+            alert("انتهى الوقت!");
+        }
+        timeRemaining--;
+        timerDisplay.innerText = `الوقت المتبقي: ${Math.floor(timeRemaining / 60)}:${timeRemaining % 60}`;
+    }, 1000);
 }
