@@ -18,19 +18,30 @@
     <div class="quiz-container">
         <h1>اختبار علوم الحاسوب والبرمجة</h1>
 
-        <!-- حقل إدخال اسم الطالب -->
+        <!-- إدخال اسم الطالب -->
         <div id="student-name-container">
             <label for="student-name">أدخل اسمك:</label>
             <input type="text" id="student-name" placeholder="اكتب اسمك هنا">
-            <button id="start-button">التالي</button>
+            <button id="start-button">بدء الامتحان</button>
         </div>
 
-        <!-- قسم الأسئلة (يظهر بعد إدخال الاسم) -->
+        <!-- اسم الطالب يظهر هنا -->
+        <div id="student-name-display" class="student-name-display"></div>
+
+        <!-- قسم الأسئلة -->
         <div id="question-container" style="display: none;">
-            <p id="question-text"></p>
-            <div id="answer-buttons" class="btn-container"></div>
-            <button id="next-button" class="next-btn">التالي</button>
-            <p id="score-text"></p>
+            <div class="quiz-content">
+                <!-- أرقام الأسئلة -->
+                <div class="question-numbers" id="question-numbers"></div>
+
+                <!-- السؤال والاختيارات -->
+                <div class="question-section">
+                    <p id="question-text"></p>
+                    <div id="answer-buttons" class="btn-container"></div>
+                    <button id="next-button" class="next-btn">التالي</button>
+                    <p id="score-text"></p>
+                </div>
+            </div>
         </div>
     </div>
 
