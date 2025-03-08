@@ -1,14 +1,11 @@
 const questions = [
     { question: "ما هو نوع البيانات الذي يستخدم لتخزين النصوص في JavaScript؟", answers: ["int", "string", "boolean", "float"], correct: 1 },
     { question: "ما هو الامتداد الرئيسي لملفات HTML؟", answers: [".css", ".html", ".js", ".php"], correct: 1 },
-    { question: "ما هو العنصر الأساسي في CSS لتغيير لون الخلفية؟", answers: ["background-color", "color", "border", "font-size"], correct: 0 },
-    { question: "ما هو بروتوكول الإنترنت الأكثر استخدامًا لنقل صفحات الويب؟", answers: ["FTP", "HTTP", "TCP", "SMTP"], correct: 1 },
 ];
 
-// إنشاء 46 سؤالًا إضافيًا ليصبح العدد 50
-for (let i = 0; i < 46; i++) {
+for (let i = 0; i < 48; i++) {
     questions.push({
-        question: `سؤال رقم ${i + 5}: ما هو مفهوم البرمجة ${i % 3 === 0 ? "كائنية التوجه" : "الإجرائية"}؟`,
+        question: `سؤال رقم ${i + 3}: ما هو مفهوم البرمجة ${i % 3 === 0 ? "كائنية التوجه" : "الإجرائية"}؟`,
         answers: ["مفهوم حديث", "نهج برمجي", "أداة تطوير", "لغة برمجة"],
         correct: 1
     });
@@ -25,16 +22,18 @@ const scoreText = document.getElementById("score-text");
 const startButton = document.getElementById("start-button");
 const studentNameInput = document.getElementById("student-name");
 const questionContainer = document.getElementById("question-container");
-const studentNameContainer = document.getElementById("student-name-container");
+const studentNameDisplay = document.getElementById("student-name-display");
+const questionNumbers = document.getElementById("question-numbers");
 
-// عند الضغط على "التالي"، يبدأ الامتحان بعد إدخال اسم الطالب
+// بدء الاختبار بعد إدخال الاسم
 startButton.addEventListener("click", () => {
     studentName = studentNameInput.value.trim();
     if (studentName === "") {
         alert("يرجى إدخال اسم الطالب قبل بدء الاختبار.");
         return;
     }
-    studentNameContainer.style.display = "none";
+    studentNameDisplay.innerText = `الطالب: ${studentName}`;
+    startButton.style.display = "none";
     questionContainer.style.display = "block";
     startQuiz();
 });
@@ -42,7 +41,16 @@ startButton.addEventListener("click", () => {
 function startQuiz() {
     currentQuestionIndex = 0;
     score = 0;
+    questionNumbers.innerHTML = "";
     nextButton.style.display = "none";
+
+    questions.forEach((_, index) => {
+        const numDiv = document.createElement("div");
+        numDiv.innerText = index + 1;
+        numDiv.classList.add("question-number");
+        questionNumbers.appendChild(numDiv);
+    });
+
     showQuestion();
 }
 
@@ -50,11 +58,13 @@ function showQuestion() {
     resetState();
     let currentQuestion = questions[currentQuestionIndex];
     questionText.innerText = currentQuestion.question;
+    questionNumbers.children[currentQuestionIndex].classList.add("answered");
+
     currentQuestion.answers.forEach((answer, index) => {
         const button = document.createElement("button");
         button.innerText = answer;
         button.classList.add("btn");
-        button.onclick = () => selectAnswer(index);
+        button.onclick = () => selectAnswer(index, button);
         answerButtons.appendChild(button);
     });
 }
@@ -64,27 +74,11 @@ function resetState() {
     answerButtons.innerHTML = "";
 }
 
-function selectAnswer(index) {
-    let correctIndex = questions[currentQuestionIndex].correct;
-    if (index === correctIndex) {
+function selectAnswer(index, button) {
+    button.classList.add("selected");
+    button.parentNode.childNodes.forEach(btn => btn.onclick = null);
+    if (index === questions[currentQuestionIndex].correct) {
         score++;
     }
     nextButton.style.display = "block";
 }
-
-nextButton.addEventListener("click", () => {
-    currentQuestionIndex++;
-    if (currentQuestionIndex < questions.length) {
-        showQuestion();
-    } else {
-        showScore();
-    }
-});
-
-function showScore() {
-    resetState();
-    questionText.innerText = `الطالب: ${studentName}\n لقد حصلت على ${score} من ${questions.length}`;
-    scoreText.innerText = "انتهى الاختبار! شكرًا لمشاركتك.";
-}
-
-startQuiz();
