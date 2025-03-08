@@ -3,18 +3,12 @@ const questions = [
     { question: "ما هو الامتداد الرئيسي لملفات HTML؟", answers: [".css", ".html", ".js", ".php"], correct: 1 },
     { question: "ما هو العنصر الأساسي في CSS لتغيير لون الخلفية؟", answers: ["background-color", "color", "border", "font-size"], correct: 0 },
     { question: "ما هو بروتوكول الإنترنت الأكثر استخدامًا لنقل صفحات الويب؟", answers: ["FTP", "HTTP", "TCP", "SMTP"], correct: 1 },
-    { question: "أي لغة برمجة تستخدم بشكل أساسي لتطوير تطبيقات Android؟", answers: ["Python", "Swift", "Kotlin", "C#"], correct: 2 },
-    { question: "ما هو المفهوم الذي يمثل إعادة استخدام الكود في البرمجة؟", answers: ["التجريد", "التوريث", "التعددية", "الكبسلة"], correct: 1 },
-    { question: "ما هو دور 'div' في HTML؟", answers: ["عنصر تفاعلي", "عنصر إدخال", "عنصر تقسيم", "عنصر صوتي"], correct: 2 },
-    { question: "ما هو اسم لغة الاستعلام المستخدمة في قواعد البيانات؟", answers: ["HTML", "CSS", "SQL", "JavaScript"], correct: 2 },
-    { question: "ما هو الاختصار الذي يشير إلى 'واجهة برمجة التطبيقات'؟", answers: ["API", "UI", "IDE", "SDK"], correct: 0 },
-    { question: "ما هي أسرع وحدة تخزين في الحاسوب؟", answers: ["HDD", "SSD", "RAM", "USB"], correct: 2 },
 ];
 
-// إنشاء 40 سؤالًا إضافيًا تلقائيًا لنصل إلى 50 سؤال
-for (let i = 0; i < 40; i++) {
+// إنشاء 46 سؤالًا إضافيًا ليصبح العدد 50
+for (let i = 0; i < 46; i++) {
     questions.push({
-        question: `سؤال رقم ${i + 11}: ما هو مفهوم البرمجة ${i % 3 === 0 ? "كائنية التوجه" : "الإجرائية"}؟`,
+        question: `سؤال رقم ${i + 5}: ما هو مفهوم البرمجة ${i % 3 === 0 ? "كائنية التوجه" : "الإجرائية"}؟`,
         answers: ["مفهوم حديث", "نهج برمجي", "أداة تطوير", "لغة برمجة"],
         correct: 1
     });
@@ -22,11 +16,28 @@ for (let i = 0; i < 40; i++) {
 
 let currentQuestionIndex = 0;
 let score = 0;
+let studentName = "";
 
 const questionText = document.getElementById("question-text");
 const answerButtons = document.getElementById("answer-buttons");
 const nextButton = document.getElementById("next-button");
 const scoreText = document.getElementById("score-text");
+const startButton = document.getElementById("start-button");
+const studentNameInput = document.getElementById("student-name");
+const questionContainer = document.getElementById("question-container");
+const studentNameContainer = document.getElementById("student-name-container");
+
+// عند الضغط على "التالي"، يبدأ الامتحان بعد إدخال اسم الطالب
+startButton.addEventListener("click", () => {
+    studentName = studentNameInput.value.trim();
+    if (studentName === "") {
+        alert("يرجى إدخال اسم الطالب قبل بدء الاختبار.");
+        return;
+    }
+    studentNameContainer.style.display = "none";
+    questionContainer.style.display = "block";
+    startQuiz();
+});
 
 function startQuiz() {
     currentQuestionIndex = 0;
@@ -72,7 +83,7 @@ nextButton.addEventListener("click", () => {
 
 function showScore() {
     resetState();
-    questionText.innerText = `لقد حصلت على ${score} من ${questions.length}`;
+    questionText.innerText = `الطالب: ${studentName}\n لقد حصلت على ${score} من ${questions.length}`;
     scoreText.innerText = "انتهى الاختبار! شكرًا لمشاركتك.";
 }
 
