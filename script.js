@@ -13,7 +13,6 @@ const body = document.querySelector('body').style,
     cont_4 = document.querySelector('.cont-4').style,
     result_page = document.querySelector('.result-page').style,
     page = document.querySelector('.page'),
-    _que = document.querySelector('.que').style,
     correct_que = document.querySelector('.correct_que'),
     wrong_que = document.querySelector('.wrong_que'),
     att_que = document.querySelector('.att_que'),
@@ -32,48 +31,24 @@ sign_in_btn.onclick = () => {
         userid = document.forms["form-1"]["userid"].value,
         _username = document.querySelectorAll('.username'),
         _userid = document.querySelectorAll('.userid');
-    Array.from(_username).forEach(name => {
-        name.innerHTML = username;
-    });
-    Array.from(_userid).forEach(id => {
-        id.innerHTML = userid;
-    });
+    _username.forEach(name => name.innerHTML = username);
+    _userid.forEach(id => id.innerHTML = userid);
     page.innerHTML = "1/4";
-    alert("ํสฺํไ ฺแํ฿ ใอวๆแษ วแลฬวศษ ฺแ์ ฬใํฺ วแรำฦแษก ๆละว แใ สÝฺแ ะแ฿ก Ýำํสใ วฺสศวั วแฺแวใษ ีÝั๐ว แๅะว วแำฤวแ.")
+    alert("ููุฑุฌู ุงูุฅุฌุงุจุฉ ุนูู ุฌู…ูุน ุงูุฃุณุฆูุฉุ ูุฅุฐุง ูู… ุชูุนูุ ูุณูุชู… ุงุญุชุณุงุจ ุงูุนูุงู…ุฉ ุตูุฑูุง ููุฐุง ุงูุณุคุงู.");
 }
 
-sec_page_btn.onclick = () => {
-    cont_1.opacity = "0";
-    cont_1.visibility = "hidden";
-    cont_1.zIndex = "-1";
-    cont_2.opacity = "1";
-    cont_2.visibility = "visible";
-    cont_2.zIndex = "1";
-    body.transition = "all 0.5s";
-    page.innerHTML = "2/4";
-}
-
-third_page_btn.onclick = () => {
-    cont_2.opacity = "0";
-    cont_2.visibility = "hidden";
-    cont_2.zIndex = "-2";
-    cont_3.opacity = "1";
-    cont_3.visibility = "visible";
-    cont_3.zIndex = "2";
-    body.transition = "all 0.5s";
-    page.innerHTML = "3/4";
-}
-
-fourth_page_btn.onclick = () => {
-    cont_3.opacity = "0";
-    cont_3.visibility = "hidden";
-    cont_3.zIndex = "-3";
-    cont_4.opacity = "1";
-    cont_4.visibility = "visible";
-    cont_4.zIndex = "3";
-    body.transition = "all 0.5s";
-    page.innerHTML = "4/4";
-}
+[sec_page_btn, third_page_btn, fourth_page_btn, fifth_page_btn].forEach((btn, index) => {
+    btn.onclick = () => {
+        document.querySelector(`.cont-${index + 1}`).style.opacity = "0";
+        document.querySelector(`.cont-${index + 1}`).style.visibility = "hidden";
+        document.querySelector(`.cont-${index + 1}`).style.zIndex = "-1";
+        document.querySelector(`.cont-${index + 2}`).style.opacity = "1";
+        document.querySelector(`.cont-${index + 2}`).style.visibility = "visible";
+        document.querySelector(`.cont-${index + 2}`).style.zIndex = "1";
+        body.transition = "all 0.5s";
+        page.innerHTML = `${index + 2}/4`;
+    };
+});
 
 fifth_page_btn.onclick = () => {
     cont_4.opacity = "0";
@@ -90,33 +65,25 @@ fifth_page_btn.onclick = () => {
     main.zIndex = "-5";
     body.transition = "all 0.5s";
     body.overflow = "hidden";
-    if (correct_point >= 7) {
-        alert("แÞฯ วฬสาส วแวฮสศวัก วไÞั ฺแ์ วแาั วแสวแํ รฯไวๅ แฺัึ ไสํฬส฿")
-        status.innerHTML = "Pass";
-    }
-    else {
-        alert("แÞฯ Ýิแส Ýํ วแวฮสศวัก วไÞั ฺแ์ วแาั วแสวแํ รฯไวๅ แฺัึ ไสํฬส฿")
-        status.innerHTML = "Failed";
-    }
+    status.innerHTML = correct_point >= 7 ? "ูุงุฌุญ" : "ุฑุงุณุจ";
+    alert(correct_point >= 7 ? "ููุฏ ุงุฌุชุฒุช ุงูุงุฎุชุจุงุฑุ ุงููุฑ ุนูู ุงูุฒุฑ ุงูุชุงูู ูุนุฑุถ ูุชูุฌุชู" : "ููุฏ ูุดูุช ูู ุงูุงุฎุชุจุงุฑุ ุงููุฑ ุนูู ุงูุฒุฑ ุงูุชุงูู ูุนุฑุถ ูุชูุฌุชู");
 }
 
-var correct_ans_arr = ["5", "4", "2", "7", "12", "50", "60", "24", "20", "10", "360", "110", "195", "0"]
+const correct_ans_arr = ["5", "4", "2", "7", "12", "50", "60", "24", "20", "10", "360", "110", "195", "0"];
 
 function wrong_selection() {
     section.backgroundColor = "red";
-    alert('ลฬวศส฿ ฮวุฦษก วไสÞแ ลแ์ วแำฤวแ วแสวแํ')
+    alert('ุฅุฌุงุจุชู ุฎุงุทุฆุฉ! ุญุงูู ู…ุฑุฉ ุฃุฎุฑู.');
 }
 
-var correct_point = 0;
+let correct_point = 0;
 
 function right_selection(value) {
-    for (i = 0; i <= correct_ans_arr.length - 1; i++) {
-        if (value == correct_ans_arr[i]) {
-            correct_point = correct_point + 1;
-            section.backgroundColor = "#1AA15F";
-            correct_que.innerHTML = correct_point;
-            wrong_que.innerHTML = 20 - correct_point;
-            att_que.innerHTML = correct_point + (20 - correct_point);
-        }
+    if (correct_ans_arr.includes(value.toString())) {
+        correct_point++;
+        section.backgroundColor = "#1AA15F";
+        correct_que.innerHTML = correct_point;
+        wrong_que.innerHTML = 20 - correct_point;
+        att_que.innerHTML = "20";
     }
 }
