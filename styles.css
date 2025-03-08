@@ -1,7 +1,7 @@
 body {
     font-family: Arial, sans-serif;
     text-align: center;
-    background-color: #f4f4f4;
+    background-color: #f8f9fa;
     direction: rtl;
     margin: 0;
     padding: 0;
@@ -17,7 +17,7 @@ body {
 }
 
 .quiz-container {
-    width: 60%;
+    width: 80%;
     margin: 30px auto;
     background: white;
     padding: 20px;
@@ -67,6 +67,38 @@ button:hover {
     display: none;
 }
 
+/* تنسيق القسم الرئيسي */
+.quiz-content {
+    display: flex;
+    justify-content: space-between;
+}
+
+/* أرقام الأسئلة */
+.question-numbers {
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+}
+
+.question-number {
+    background-color: #ddd;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.question-number.answered {
+    background-color: #28a745;
+    color: white;
+}
+
+/* قسم الأسئلة */
+.question-section {
+    width: 75%;
+}
+
 .btn-container {
     display: flex;
     flex-direction: column;
@@ -87,4 +119,19 @@ button:hover {
 .btn:hover {
     background-color: #007bff;
     color: white;
+}
+
+/* عند اختيار الإجابة، لا يمكن التعديل */
+.btn.selected {
+    background-color: #28a745;
+    color: white;
+    pointer-events: none;
+}
+
+/* اسم الطالب يظهر أعلى الامتحان */
+.student-name-display {
+    font-size: 20px;
+    font-weight: bold;
+    margin: 10px 0;
+    color: #004080;
 }
