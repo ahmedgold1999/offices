@@ -14,8 +14,8 @@ for (let i = 0; i < 48; i++) {
 let currentQuestionIndex = 0;
 let score = 0;
 let studentName = "";
-let answeredQuestions = new Array(questions.length).fill(false);
 let timeRemaining = 3600;
+let timerInterval;
 
 const questionText = document.getElementById("question-text");
 const answerButtons = document.getElementById("answer-buttons");
@@ -25,6 +25,7 @@ const startButton = document.getElementById("start-button");
 const studentNameInput = document.getElementById("student-name");
 const questionContainer = document.getElementById("question-container");
 const studentNameDisplay = document.getElementById("student-name-display");
+const questionNumbers = document.getElementById("question-numbers");
 const header = document.getElementById("header");
 const studentNameContainer = document.getElementById("student-name-container");
 const examInfo = document.getElementById("exam-info");
@@ -45,27 +46,14 @@ startButton.addEventListener("click", () => {
     startTimer();
 });
 
-nextButton.addEventListener("click", () => {
-    if (currentQuestionIndex < questions.length - 1) {
-        currentQuestionIndex++;
-        showQuestion();
-    }
-});
-
-finishButton.addEventListener("click", () => {
-    let unanswered = answeredQuestions.includes(false);
-    if (unanswered) {
-        let confirmEnd = confirm("لديك أسئلة غير مكتملة، هل أنت متأكد من إنهاء الامتحان؟");
-        if (!confirmEnd) return;
-    }
-    endExam();
-});
+function startQuiz() {
+    showQuestion();
+}
 
 function showQuestion() {
     resetState();
     let currentQuestion = questions[currentQuestionIndex];
     questionText.innerText = currentQuestion.question;
-    
     currentQuestion.answers.forEach((answer, index) => {
         const button = document.createElement("button");
         button.innerText = answer;
@@ -77,19 +65,23 @@ function showQuestion() {
 
 function selectAnswer(index, button) {
     button.classList.add("selected");
-    button.parentNode.childNodes.forEach(btn => btn.onclick = null);
-    answeredQuestions[currentQuestionIndex] = true;
     nextButton.style.display = "block";
 }
 
+nextButton.addEventListener("click", () => {
+    if (currentQuestionIndex < questions.length - 1) {
+        currentQuestionIndex++;
+        showQuestion();
+    }
+});
+
 function startTimer() {
-    setInterval(() => {
-        if (timeRemaining <= 0) endExam();
+    timerInterval = setInterval(() => {
+        if (timeRemaining <= 0) {
+            clearInterval(timerInterval);
+            alert("انتهى الوقت!");
+        }
         timeRemaining--;
         timerDisplay.innerText = `الوقت المتبقي: ${Math.floor(timeRemaining / 60)}:${timeRemaining % 60}`;
     }, 1000);
-}
-
-function endExam() {
-    alert(`انتهى الامتحان! الدرجة: ${score}/${questions.length}`);
 }
