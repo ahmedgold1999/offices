@@ -1,110 +1,21 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>منصة الاختبارات الإلكترونية</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap">
-    <link rel="stylesheet" href="style.css">
-    <script src="https://kit.fontawesome.com/1ba2cf90f3.js" crossorigin="anonymous"></script>
-    <style>
-        body {
-            font-family: 'Cairo', sans-serif;
-            background-color: #f8f9fa;
-            text-align: right;
-            padding: 20px;
-        }
-        section {
-            max-width: 800px;
-            margin: auto;
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        h1 {
-            text-align: center;
-            color: #333;
-        }
-        .student-info p {
-            text-align: center;
-            font-size: 18px;
-            margin: 5px 0;
-        }
-        input, button {
-            width: 100%;
-            padding: 10px;
-            margin-top: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            font-size: 16px;
-        }
-        button {
-            background-color: #007bff;
-            color: white;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: #0056b3;
-        }
-        .que-cont {
-            margin-top: 20px;
-        }
-        .que h1 {
-            font-size: 20px;
-            margin-bottom: 10px;
-        }
-        ul {
-            list-style: none;
-            padding: 0;
-        }
-        ul li {
-            margin-bottom: 10px;
-        }
-    </style>
+    <title>اختبار إلكتروني</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <section>
-        <header class="sign-in">
-            <h1>منصة الاختبارات الإلكترونية</h1>
-            <form id="form-1">
-                <div class="student-info">
-                    <p>كلية علوم الحاسوب والرياضيات</p>
-                    <p>قسم علوم الحاسوب</p>
-                    <p>إعداد الطالبة: مها منعم</p>
-                </div>
-                <input type="text" name="username" placeholder="اسم الطالب">
-                <input type="number" name="userid" placeholder="المعرف الطلابي">
-                <button type="button" name="reg-btn">البدء بالامتحان <i class="fas fa-caret-left"></i></button>
-            </form>
-        </header>
-        <main>
-            <div class="que-cont cont-1">
-                <div class="que que-1">
-                    <h1><span>س1-</span> كم عدد المحافظات في باكستان؟</h1>
-                    <ul>
-                        <li><button onclick="right_selection(5)" value="5">5</button></li>
-                        <li><button onclick="wrong_selection()">4</button></li>
-                        <li><button onclick="wrong_selection()">3</button></li>
-                        <li><button onclick="wrong_selection()">2</button></li>
-                    </ul>
-                </div>
-                <button class="sec-page-btn">التالي <i class="fas fa-caret-left"></i></button>
-            </div>
-        </main>
-        <div class="result-page">
-            <h1>نتيجة الامتحان</h1>
-            <ul>
-                <li>الاسم: <span class="username"></span></li>
-                <li>المعرف: <span class="userid"></span></li>
-                <li>إجمالي الأسئلة: <span>20</span></li>
-                <li>الأسئلة الصحيحة: <span class="correct_que"></span></li>
-                <li>الأسئلة الخاطئة: <span class="wrong_que"></span></li>
-                <li>الأسئلة المجابة: <span class="att_que"></span></li>
-                <li>الحالة: <span class="status"></span></li>
-            </ul>
+    <div class="quiz-container">
+        <h1>اختبار إلكتروني</h1>
+        <div id="question-container">
+            <p id="question-text"></p>
+            <div id="answer-buttons" class="btn-container"></div>
         </div>
-    </section>
+        <button id="next-button" class="next-btn">التالي</button>
+        <p id="score-text"></p>
+    </div>
     <script src="script.js"></script>
 </body>
 </html>
