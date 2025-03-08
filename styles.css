@@ -10,9 +10,9 @@ body {
 .header {
     background-color: #004080;
     color: white;
-    padding: 15px;
+    padding: 20px;
     text-align: center;
-    font-size: 16px;
+    font-size: 20px;
     border-bottom: 5px solid #002060;
 }
 
@@ -20,32 +20,33 @@ body {
     width: 80%;
     margin: 30px auto;
     background: white;
-    padding: 20px;
+    padding: 30px;
     border-radius: 10px;
     box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
 }
 
 h1 {
     color: #004080;
+    font-size: 24px;
 }
 
 label {
-    font-size: 18px;
+    font-size: 20px;
     font-weight: bold;
 }
 
 input {
     width: 80%;
-    padding: 10px;
+    padding: 12px;
     margin: 10px 0;
-    font-size: 16px;
-    border: 1px solid #ccc;
+    font-size: 18px;
+    border: 2px solid #ccc;
     border-radius: 5px;
 }
 
 button {
-    padding: 12px 20px;
-    font-size: 16px;
+    padding: 14px 24px;
+    font-size: 18px;
     cursor: pointer;
     border: none;
     border-radius: 5px;
@@ -67,10 +68,11 @@ button:hover {
     display: none;
 }
 
-/* تنسيق القسم الرئيسي */
-.quiz-content {
-    display: flex;
-    justify-content: space-between;
+.student-name-display {
+    font-size: 22px;
+    font-weight: bold;
+    margin: 10px 0;
+    color: #004080;
 }
 
 /* أرقام الأسئلة */
@@ -84,9 +86,10 @@ button:hover {
 
 .question-number {
     background-color: #ddd;
-    padding: 10px;
+    padding: 12px;
     border-radius: 5px;
     cursor: pointer;
+    font-size: 18px;
 }
 
 .question-number.answered {
@@ -102,15 +105,15 @@ button:hover {
 .btn-container {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 12px;
 }
 
 .btn {
     background-color: #f8f9fa;
-    border: 1px solid #007bff;
+    border: 2px solid #007bff;
     color: #007bff;
-    padding: 10px;
-    font-size: 16px;
+    padding: 14px;
+    font-size: 18px;
     cursor: pointer;
     border-radius: 5px;
     transition: 0.3s;
@@ -121,17 +124,8 @@ button:hover {
     color: white;
 }
 
-/* عند اختيار الإجابة، لا يمكن التعديل */
 .btn.selected {
     background-color: #28a745;
     color: white;
     pointer-events: none;
-}
-
-/* اسم الطالب يظهر أعلى الامتحان */
-.student-name-display {
-    font-size: 20px;
-    font-weight: bold;
-    margin: 10px 0;
-    color: #004080;
 }
