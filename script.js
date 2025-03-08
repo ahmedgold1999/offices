@@ -1,89 +1,63 @@
-const body = document.querySelector('body').style,
-    sign_in_btn = document.forms["form-1"]["reg-btn"],
-    section = document.querySelector('section').style,
-    header = document.querySelector('header').style,
-    main = document.querySelector('main').style,
-    sec_page_btn = document.querySelector('.sec-page-btn'),
-    third_page_btn = document.querySelector('.third-page-btn'),
-    fourth_page_btn = document.querySelector('.fourth-page-btn'),
-    fifth_page_btn = document.querySelector('.fifth-page-btn'),
-    cont_1 = document.querySelector('.cont-1').style,
-    cont_2 = document.querySelector('.cont-2').style,
-    cont_3 = document.querySelector('.cont-3').style,
-    cont_4 = document.querySelector('.cont-4').style,
-    result_page = document.querySelector('.result-page').style,
-    page = document.querySelector('.page'),
-    correct_que = document.querySelector('.correct_que'),
-    wrong_que = document.querySelector('.wrong_que'),
-    att_que = document.querySelector('.att_que'),
-    status = document.querySelector('.status');
+const questions = [
+    { question: "ما هو أكبر كوكب في المجموعة الشمسية؟", answers: ["الأرض", "المريخ", "المشتري", "زحل"], correct: 2 },
+    { question: "ما هو العنصر الكيميائي الذي يرمز له بـ O؟", answers: ["أكسجين", "ذهب", "فضة", "حديد"], correct: 0 },
+    { question: "كم عدد قارات العالم؟", answers: ["5", "6", "7", "8"], correct: 2 },
+];
 
-sign_in_btn.onclick = () => {
-    section.height = "200vh";
-    section.overflow = "hidden";
-    header.opacity = "0";
-    header.visibility = "hidden";
-    main.opacity = "1";
-    main.visibility = "visible";
-    body.transition = "all 0.5s";
-    body.overflow = "scroll";
-    const username = document.forms["form-1"]["username"].value,
-        userid = document.forms["form-1"]["userid"].value,
-        _username = document.querySelectorAll('.username'),
-        _userid = document.querySelectorAll('.userid');
-    _username.forEach(name => name.innerHTML = username);
-    _userid.forEach(id => id.innerHTML = userid);
-    page.innerHTML = "1/4";
-    alert("يُرجى الإجابة على جميع الأسئلة، وإذا لم تفعل، فسيتم احتساب العلامة صفرًا لهذا السؤال.");
+let currentQuestionIndex = 0;
+let score = 0;
+
+const questionText = document.getElementById("question-text");
+const answerButtons = document.getElementById("answer-buttons");
+const nextButton = document.getElementById("next-button");
+const scoreText = document.getElementById("score-text");
+
+function startQuiz() {
+    currentQuestionIndex = 0;
+    score = 0;
+    nextButton.style.display = "none";
+    showQuestion();
 }
 
-[sec_page_btn, third_page_btn, fourth_page_btn, fifth_page_btn].forEach((btn, index) => {
-    btn.onclick = () => {
-        document.querySelector(`.cont-${index + 1}`).style.opacity = "0";
-        document.querySelector(`.cont-${index + 1}`).style.visibility = "hidden";
-        document.querySelector(`.cont-${index + 1}`).style.zIndex = "-1";
-        document.querySelector(`.cont-${index + 2}`).style.opacity = "1";
-        document.querySelector(`.cont-${index + 2}`).style.visibility = "visible";
-        document.querySelector(`.cont-${index + 2}`).style.zIndex = "1";
-        body.transition = "all 0.5s";
-        page.innerHTML = `${index + 2}/4`;
-    };
+function showQuestion() {
+    resetState();
+    let currentQuestion = questions[currentQuestionIndex];
+    questionText.innerText = currentQuestion.question;
+    currentQuestion.answers.forEach((answer, index) => {
+        const button = document.createElement("button");
+        button.innerText = answer;
+        button.classList.add("btn");
+        button.onclick = () => selectAnswer(index);
+        answerButtons.appendChild(button);
+    });
+}
+
+function resetState() {
+    nextButton.style.display = "none";
+    answerButtons.innerHTML = "";
+}
+
+function selectAnswer(index) {
+    let correctIndex = questions[currentQuestionIndex].correct;
+    if (index === correctIndex) {
+        score++;
+    }
+    nextButton.style.display = "block";
+}
+
+nextButton.addEventListener("click", () => {
+    currentQuestionIndex++;
+    if (currentQuestionIndex < questions.length) {
+        showQuestion();
+    } else {
+        showScore();
+    }
 });
 
-fifth_page_btn.onclick = () => {
-    cont_4.opacity = "0";
-    cont_4.visibility = "hidden";
-    cont_4.zIndex = "-4";
-    result_page.opacity = "1";
-    result_page.visibility = "visible";
-    result_page.zIndex = "3";
-    section.height = "100vh";
-    section.backgroundColor = "#1AA15F";
-    section.overflow = "hidden";
-    main.opacity = "0";
-    main.visibility = "hidden";
-    main.zIndex = "-5";
-    body.transition = "all 0.5s";
-    body.overflow = "hidden";
-    status.innerHTML = correct_point >= 7 ? "ناجح" : "راسب";
-    alert(correct_point >= 7 ? "لقد اجتزت الاختبار، انقر على الزر التالي لعرض نتيجتك" : "لقد فشلت في الاختبار، انقر على الزر التالي لعرض نتيجتك");
+function showScore() {
+    resetState();
+    questionText.innerText = `لقد حصلت على ${score} من ${questions.length}`;
+    scoreText.innerText = "انتهى الاختبار!";
 }
 
-const correct_ans_arr = ["5", "4", "2", "7", "12", "50", "60", "24", "20", "10", "360", "110", "195", "0"];
-
-function wrong_selection() {
-    section.backgroundColor = "red";
-    alert('إجابتك خاطئة! حاول مرة أخرى.');
-}
-
-let correct_point = 0;
-
-function right_selection(value) {
-    if (correct_ans_arr.includes(value.toString())) {
-        correct_point++;
-        section.backgroundColor = "#1AA15F";
-        correct_que.innerHTML = correct_point;
-        wrong_que.innerHTML = 20 - correct_point;
-        att_que.innerHTML = "20";
-    }
-}
+startQuiz();
