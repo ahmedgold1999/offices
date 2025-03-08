@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="header">
+    <div id="header" class="header">
         <h2>جامعة تكريت</h2>
         <h3>كلية علوم الحاسوب والرياضيات</h3>
         <h4>قسم علوم الحاسوب</h4>
@@ -25,20 +25,20 @@
             <button id="start-button">بدء الامتحان</button>
         </div>
 
-        <!-- اسم الطالب يظهر هنا -->
-        <div id="student-name-display" class="student-name-display"></div>
+        <!-- اسم الطالب والوقت -->
+        <div id="exam-info" class="exam-info" style="display: none;">
+            <span id="student-name-display"></span>
+            <span id="timer">الوقت المتبقي: 60:00</span>
+        </div>
 
-        <!-- قسم الأسئلة (يظهر بعد بدء الامتحان) -->
+        <!-- قسم الأسئلة -->
         <div id="question-container" style="display: none;">
             <div class="quiz-content">
-                <!-- أرقام الأسئلة -->
                 <div class="question-numbers" id="question-numbers"></div>
-
-                <!-- السؤال والاختيارات -->
                 <div class="question-section">
                     <p id="question-text"></p>
                     <div id="answer-buttons" class="btn-container"></div>
-                    <button id="next-button" class="next-btn">التالي</button>
+                    <button id="next-button" class="next-btn">السؤال التالي</button>
                     <p id="score-text"></p>
                 </div>
             </div>
