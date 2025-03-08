@@ -27,6 +27,8 @@ const questionContainer = document.getElementById("question-container");
 const studentNameDisplay = document.getElementById("student-name-display");
 const timerDisplay = document.getElementById("timer");
 const examInfo = document.getElementById("exam-info");
+const header = document.getElementById("header");
+const studentNameContainer = document.getElementById("student-name-container");
 
 startButton.addEventListener("click", () => {
     studentName = studentNameInput.value.trim();
@@ -35,9 +37,10 @@ startButton.addEventListener("click", () => {
         return;
     }
     studentNameDisplay.innerText = `الطالب: ${studentName}`;
-    startButton.style.display = "none";
-    questionContainer.style.display = "block";
+    header.style.display = "none";
+    studentNameContainer.style.display = "none";
     examInfo.style.display = "flex";
+    questionContainer.style.display = "block";
     startQuiz();
     startTimer();
 });
